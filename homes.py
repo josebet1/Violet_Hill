@@ -36,8 +36,7 @@ ZILLOW_SEARCH_STANDARD_PARAMS = {
     "pmf": "1", "pf": "1",
     "sch": "100111",
     "zoom": "9",
-    "rect": "-122204361,36678331,-121207352,37699034",
-    # for hackathon just hard-code santa clara county b/c country records.
+    "rect": "-122204361,36678331,-121207352,37699034", # for hackathon just hard-code santa clara county b/c country records.
     "search": "list",
     "rid": "3136",
     "rt": "4",
@@ -64,8 +63,6 @@ def make_zillow_request():
         response_dict = json.loads(r.content)
         list = response_dict['list']['listHTML']
         get_detail_view(list)
-        apn = get_apn(r.content)
-        owner = find_owner(apn)
         q.task_done()
 
 
@@ -77,7 +74,16 @@ def make_zillow_detaiL_request():
 
 
 def parse_detail_view(html):
-    soup = BeautifulSoup(html, 'html.parser')
+    detail_soup = BeautifulSoup(html, 'html.parser')
+
+    address_tag = detail_soup.find('header', {'class' : 'addr'})
+    address_content = address_tag.find('h1')
+    address_string = address_content.get_text()
+    print address_string
+
+
+    estimate_tag = detail_soup.find('div', {'class' : 'main-row'})
+    value = estimate_tag.get_text()
 
     base_string = '#home-facts-comparison-list",url:"'
     wildcard = '.[^"]*'
