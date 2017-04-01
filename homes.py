@@ -4,7 +4,11 @@ import requests
 import json
 from bs4 import BeautifulSoup
 import re
+from pymongo import MongoClient
+import os
 
+
+#constants
 MAX_CONNECTIONS = 50
 
 ZILLOW_BASE_URL = 'https://www.zillow.com'
@@ -46,8 +50,11 @@ ZILLOW_SEARCH_STANDARD_PARAMS = {
 }
 
 ZILLOW_PAGE_PARAM_NAME = 'p'
-
 SC_COUNTY_URL = 'http://scccroselfservice.org/web/searchPost/DOCSEARCH400S5'
+
+#globals
+main_request_queue = Queue()
+detail_queue = Queue()
 
 
 class QueuedRequest():
@@ -58,12 +65,12 @@ class QueuedRequest():
 
 def make_zillow_request():
     while True:
-        next_request = q.get()
+        next_request = main_request_queue.get()
         r = requests.get(url=next_request.url, params=next_request.params)
         response_dict = json.loads(r.content)
         list = response_dict['list']['listHTML']
         get_detail_view(list)
-        q.task_done()
+        main_request_queue.task_done()
 
 
 def make_zillow_detaiL_request():
@@ -79,11 +86,14 @@ def parse_detail_view(html):
     address_tag = detail_soup.find('header', {'class' : 'addr'})
     address_content = address_tag.find('h1')
     address_string = address_content.get_text()
-    print address_string
+    if address_string is None:
+        return
 
 
     estimate_tag = detail_soup.find('div', {'class' : 'main-row'})
     value = estimate_tag.get_text()
+    if value is None:
+        return
 
     base_string = '#home-facts-comparison-list",url:"'
     wildcard = '.[^"]*'
@@ -105,8 +115,31 @@ def parse_detail_view(html):
     parcel_tag = parcel_num_text.parent.parent.find('td', {"class": "all-source"})
     parcel_number = parcel_tag.get_text()
     owner = find_owner(parcel_number)
-    print owner
-    print parcel_number
+
+    if owner is None:
+        return
+
+    comma_index = owner.find(',')
+    last_name = owner[:comma_index]
+    remaining = owner[comma_index + 2:]
+    space_index = remaining.find(' ')
+    if space_index < 0:
+        first_name = remaining
+    else:
+        first_name = remaining[:space_index]
+
+
+    result = {
+        'first_name' : first_name,
+        'last_name' : last_name,
+        'apn' : int(parcel_number),
+        'address' : address_string,
+        'value' : value.replace(' ', '').replace('$', '')
+
+    }
+
+    db.homes.insert_one(result)
+
 
 
 def get_detail_view(list):
@@ -139,7 +172,7 @@ def find_owner(apn):
 
 
 def get_homes():
-    global q
+    global main_request_queue
     r = requests.get(url=ZILLOW_SEARCH_URL, params=ZILLOW_SEARCH_STANDARD_PARAMS)
     response_dictionary = json.loads(r.content)
     num_pages = response_dictionary['list']['numPages']
@@ -151,8 +184,8 @@ def get_homes():
             params = ZILLOW_SEARCH_STANDARD_PARAMS
             params[ZILLOW_PAGE_PARAM_NAME] = i
             new_request = QueuedRequest(url=ZILLOW_SEARCH_URL, params=params)
-            q.put(new_request)
-        q.join()
+            main_request_queue.put(new_request)
+        main_request_queue.join()
 
     threaded_query(target=make_zillow_request, populate_queue=populate_queue)
 
@@ -165,6 +198,11 @@ def threaded_query(target, populate_queue):
     populate_queue()
 
 
-q = Queue()
-detail_queue = Queue()
+
+#create mongo
+uri = os.environ['MONGODB_URI']
+client = MongoClient(uri)
+db = client.hill
+
+#get homes
 get_homes()
