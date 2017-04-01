@@ -643,11 +643,11 @@ demo = {
     		    },
     		    first_name: {
     		        required: false,
-                    minlength: 5
+                    minlength: 1
     		    },
     		    last_name: {
     		        required: false,
-                    minlength: 5
+                    minlength: 1
     		    },
     		    website: {
     		        required: true,
@@ -655,8 +655,9 @@ demo = {
                     url: true
     		    },
     		    framework: {
-        		    required: false,
-        		    minlength: 4
+        		    required: true,
+        		    minlength: 1,
+                    maxlength: 300
     		    },
     		    cities: {
         		    required: true
