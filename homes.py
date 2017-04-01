@@ -134,7 +134,7 @@ def parse_detail_view(html):
         'last_name' : last_name,
         'apn' : int(parcel_number),
         'address' : address_string,
-        'value' : value.replace(' ', '').replace('$', '')
+        'value' : int(value.replace(' ', '').replace('$', '').replace(',', ''))
 
     }
 
