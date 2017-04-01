@@ -133,13 +133,17 @@ def parse_detail_view(html):
     else:
         first_name = remaining[:space_index]
 
+    try:
+        value_int = int(value.replace(' ', '').replace('$', '').replace(',', ''))
+    except:
+        return
 
     result = {
         'first_name' : first_name,
         'last_name' : last_name,
         'apn' : int(parcel_number),
         'address' : address_string,
-        'value' : int(value.replace(' ', '').replace('$', '').replace(',', ''))
+        'value' : value_int
 
     }
 
