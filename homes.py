@@ -177,8 +177,6 @@ def get_homes():
     response_dictionary = json.loads(r.content)
     num_pages = response_dictionary['list']['numPages']
 
-    num_pages = 2
-
     def populate_queue():
         for i in xrange(1, num_pages):
             params = ZILLOW_SEARCH_STANDARD_PARAMS
