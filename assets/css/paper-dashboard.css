@@ -2229,7 +2229,7 @@ NOTE: use percentage font sizes or else old IE chokes
   cursor: default;
   opacity: 0.65;
   filter: alpha(opacity=65);
-  color: #66615b;
+  color: darkviolet;
 }
 
 .fc-state-hover {
@@ -5501,7 +5501,7 @@ strong {
 .sidebar[data-background-color="brown"]:after, .sidebar[data-background-color="brown"]:before,
 .off-canvas-sidebar[data-background-color="brown"]:after,
 .off-canvas-sidebar[data-background-color="brown"]:before {
-  background-color: #66615b;
+  background-color: darkviolet;
 }
 .sidebar[data-background-color="brown"] .user,
 .off-canvas-sidebar[data-background-color="brown"] .user {
@@ -6212,7 +6212,7 @@ strong {
 
 /*     General overwrite     */
 body {
-  color: #66615b;
+  color: darkviolet;
   font-size: 14px;
   font-family: 'Muli', Arial, sans-serif;
 }
@@ -6386,7 +6386,7 @@ a.dropdown-toggle[aria-expanded="true"] .caret {
   background-color: #F3F2EE;
   border: 1px solid #e8e7e3;
   border-radius: 4px;
-  color: #66615b;
+  color: darkviolet;
   font-size: 14px;
   padding: 7px 18px;
   height: 40px;
@@ -6405,7 +6405,7 @@ a.dropdown-toggle[aria-expanded="true"] .caret {
   box-shadow: none;
 }
 .has-success .form-control, .form-control.valid {
-  color: #66615b;
+  color: darkviolet;
   border-color: #e8e7e3;
 }
 .has-success .form-control:focus, .form-control.valid:focus {
@@ -7471,7 +7471,7 @@ star {
   border-bottom: 1px solid #cfcfca;
 }
 .navbar-default .brand {
-  color: #66615b !important;
+  color: darkviolet !important;
 }
 .navbar-default .navbar-nav > li > a:not(.btn) {
   color: #9A9A9A;
@@ -7604,7 +7604,7 @@ star {
   text-align: center;
 }
 .footer nav ul a:not(.btn) {
-  color: #66615b;
+  color: darkviolet;
   display: block;
   margin-bottom: 3px;
 }
@@ -7612,7 +7612,7 @@ star {
   color: #484541;
 }
 .footer .copyright {
-  color: #66615b;
+  color: darkviolet;
   padding: 10px 15px;
   font-size: 14px;
   margin: 15px 3px;
@@ -7635,13 +7635,13 @@ star {
   color: #F1EAE0;
 }
 .footer-black .copyright {
-  color: #66615b;
+  color: darkviolet;
 }
 .footer-black .copyright ul > li a:not(.btn) {
-  color: #66615b;
+  color: darkviolet;
 }
 .footer-black hr {
-  border-color: #66615b;
+  border-color: darkviolet;
 }
 
 .footer-transparent {
@@ -7758,7 +7758,7 @@ star {
 }
 .card .description {
   font-size: 16px;
-  color: #66615b;
+  color: darkviolet;
 }
 .card h6 {
   font-size: 12px;
@@ -8097,7 +8097,7 @@ star {
   margin-top: -21px;
 }
 .card-image .details .author .name {
-  color: #66615b;
+  color: darkviolet;
   font-size: 1.1em;
   font-weight: bold;
   line-height: 1.15;
@@ -8180,11 +8180,11 @@ star {
   text-align: center;
 }
 .card-login .card-header .card-title {
-  color: #66615b;
+  color: darkviolet;
   margin-bottom: 20px;
 }
 .card-login label {
-  color: #66615b;
+  color: darkviolet;
 }
 .card-login .btn-wd {
   min-width: 180px;
@@ -8411,7 +8411,7 @@ star {
 }
 
 .label-default {
-  background-color: #66615b;
+  background-color: darkviolet;
 }
 
 .label-primary {
@@ -8630,7 +8630,7 @@ star {
   margin-left: -20px;
   border-radius: 3px;
   opacity: .50;
-  background-color: #66615b;
+  background-color: darkviolet;
   transition: opacity 0.2s linear;
 }
 
@@ -8746,7 +8746,7 @@ star {
   position: absolute;
   left: 0;
   top: -5px;
-  color: #66615b;
+  color: darkviolet;
   opacity: .50;
   margin-left: -20px;
 }
@@ -8754,7 +8754,7 @@ star {
 .radio input[type="radio"]:not(:disabled):hover + label::before {
   font-family: 'FontAwesome';
   content: "\f192";
-  color: #66615b;
+  color: darkviolet;
   opacity: .50;
 }
 
@@ -8771,7 +8771,7 @@ star {
   margin-left: -20px;
   font-size: 22px;
   background-color: transparent;
-  color: #66615b;
+  color: darkviolet;
   transition: opacity 0.2s linear;
 }
 
@@ -8920,7 +8920,7 @@ star {
 .dropup .dropdown-menu > .active > a:hover,
 .dropup .dropdown-menu > .active > a:focus {
   background-color: #F9F7F3;
-  color: #66615b;
+  color: darkviolet;
 }
 .dropup .dropdown-menu > li > a:hover,
 .dropup .dropdown-menu > li > a:focus {
@@ -8993,7 +8993,7 @@ star {
   padding: 10px 15px;
 }
 .dropdown-menu > li > a {
-  color: #66615b;
+  color: darkviolet;
   font-size: 14px;
   padding: 10px 15px;
   -webkit-transition: none;
@@ -9072,20 +9072,20 @@ star {
 .select .no-style:active,
 .select .no-style:focus {
   background-color: #FFFFFF;
-  color: #66615b;
+  color: darkviolet;
 }
 .select .no-style:hover .caret,
 .select .no-style:active .caret,
 .select .no-style:focus .caret {
-  border-top-color: #66615b;
+  border-top-color: darkviolet;
 }
 
 .open .no-style {
   background-color: #FFFFFF !important;
-  color: #66615b !important;
+  color: darkviolet !important;
 }
 .open .no-style .caret {
-  border-top-color: #66615b !important;
+  border-top-color: darkviolet !important;
 }
 
 .btn-group.select {
@@ -9114,12 +9114,12 @@ star {
 
 .dropdown-notification-list > li {
   border-bottom: 1px solid #F1EAE0;
-  color: #66615b;
+  color: darkviolet;
   font-size: 14px;
   padding: 10px 5px;
 }
 .dropdown-notification-list > li > a {
-  color: #66615b;
+  color: darkviolet;
   white-space: normal;
 }
 .dropdown-notification-list > li > a .notification-text {
@@ -9152,7 +9152,7 @@ star {
 .dropdown-notification-list > li:hover,
 .dropdown-notification-list > li:focus {
   background-color: #F0EFEB;
-  color: #66615b;
+  color: darkviolet;
   opacity: 1;
   text-decoration: none;
 }
@@ -9169,7 +9169,7 @@ star {
 }
 
 .dropdown-sharing li {
-  color: #66615b;
+  color: darkviolet;
   font-size: 14px;
 }
 .dropdown-sharing li .social-line {
@@ -9186,7 +9186,7 @@ star {
 .dropdown-sharing li:focus a,
 .dropdown-sharing li:focus .action-line {
   background-color: #F9F7F3;
-  color: #66615b;
+  color: darkviolet;
   opacity: 1;
   text-decoration: none;
 }
@@ -9211,7 +9211,7 @@ star {
 .dropdown-actions li:hover a,
 .dropdown-actions li:focus a {
   background-color: #F0EFEB;
-  color: #66615b;
+  color: darkviolet;
   opacity: 1;
   text-decoration: none;
 }
@@ -9856,7 +9856,7 @@ star {
   border-radius: 3px;
 }
 .panel-default a {
-  color: #66615b;
+  color: darkviolet;
 }
 .panel-default a:hover, .panel-default a:active, .panel-default a:focus {
   color: #EB5E28;
@@ -10363,10 +10363,10 @@ star {
   color: #A49E93;
 }
 .nav-tabs > li > a:hover {
-  color: #66615b;
+  color: darkviolet;
 }
 .nav-tabs > li.active {
-  color: #66615b;
+  color: darkviolet;
   position: relative;
 }
 .nav-tabs > li.active > a,
@@ -10408,10 +10408,10 @@ star {
   text-align: right;
 }
 .nav-stacked > li > a:hover {
-  color: #66615b;
+  color: darkviolet;
 }
 .nav-stacked > li.active > a {
-  color: #66615b;
+  color: darkviolet;
 }
 .nav-stacked > li.active :after {
   border-right: 11px solid #FFFFFF;
