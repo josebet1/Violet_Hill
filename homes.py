@@ -84,6 +84,8 @@ def parse_detail_view(html):
     detail_soup = BeautifulSoup(html, 'html.parser')
 
     address_tag = detail_soup.find('header', {'class' : 'addr'})
+    if address_tag is None:
+        return
     address_content = address_tag.find('h1')
     address_string = address_content.get_text()
     if address_string is None:
