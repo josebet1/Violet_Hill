@@ -187,7 +187,11 @@ def find_owner(apn):
 def get_homes():
     global main_request_queue
     r = requests.get(url=ZILLOW_SEARCH_URL, params=ZILLOW_SEARCH_STANDARD_PARAMS)
-    response_dictionary = json.loads(r.content)
+    try:
+        response_dictionary = json.loads(r.content)
+    except:
+        print r.content
+        return
     num_pages = response_dictionary['list']['numPages']
 
     def populate_queue():
