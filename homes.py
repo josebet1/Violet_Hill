@@ -68,7 +68,11 @@ def make_zillow_request():
     while True:
         next_request = main_request_queue.get()
         r = requests.get(url=next_request.url, params=next_request.params)
-        response_dict = json.loads(r.content)
+        try:
+            response_dict = json.loads(r.content)
+        except:
+            print r.content
+            return
         list = response_dict['list']['listHTML']
         get_detail_view(list)
         main_request_queue.task_done()
