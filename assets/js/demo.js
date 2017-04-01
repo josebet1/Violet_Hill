@@ -649,21 +649,18 @@ demo = {
     		        required: false,
                     minlength: 1
     		    },
-    		    website: {
+    		    slide_deck: {
     		        required: true,
                     minlength: 5,
                     url: true
     		    },
-    		    framework: {
+    		    elevator_pitch: {
         		    required: true,
-        		    minlength: 1,
+        		    minlength: 5,
                     maxlength: 300
     		    },
-    		    cities: {
+    		    industry: {
         		    required: true
-    		    },
-    		    price:{
-        		    number: true
     		    }
     		  }
     		});

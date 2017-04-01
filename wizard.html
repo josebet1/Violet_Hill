@@ -33,7 +33,7 @@
 <div class="row">
     <div class="col-md-8 col-md-offset-2">
         <div class="card card-wizard" id="wizardCard">
-            <form id="wizardForm" method="" action="">
+            <form id="wizardForm" method="get" action="/">
                 <div class="card-header text-center">
                     <h4 class="card-title">Get Started with Violet Hill</h4>
                     <p class="category">We just need a bit of info before we begin.</p>
@@ -98,7 +98,7 @@
                                         <label class="control-label">Your Slide Deck<star>*</star></label>
                                         <input class="form-control"
                                                type="text"
-                                               name="website"
+                                               name="slide_deck"
                                                url="true"
                                                placeholder="ex: http://www.example.com/slides"
                                         />
@@ -111,7 +111,7 @@
                                         </label>
                                         <!--     IMPORTANT! - the "bootstrap select picker" is not compatible with jquery.validation.js, that's why we use the "default select" inside this wizard. We will try to contact the guys who are responsibble for the "bootstrap select picker" to find a solution. Thank you for your patience.
                                          -->
-                                        <select name="cities" class="form-control">
+                                        <select name="industry" class="form-control">
                                             <option selected="" disabled="">- industry -</option>
                                             <option value="Abortion Policy/Anti-Abortion">Abortion Policy/Anti-Abortion</option>
                                             <option value="Abortion Policy/Pro-Abortion Rights">Abortion Policy/Pro-Abortion Rights</option>
@@ -338,7 +338,7 @@
                                         <label class="control-label">Elevator Pitch (max 300 chars)<star>*</star></label>
                                         <input class="form-control"
                                                type="text"
-                                               name="framework"
+                                               name="elevator_pitch"
                                                placeholder="Elevator Pitch"
                                         />
                                     </div>
@@ -353,7 +353,7 @@
                 <div class="card-footer">
                     <button type="button" class="btn btn-default btn-fill btn-wd btn-back pull-left">Back</button>
                     <button type="button" class="btn btn-info btn-fill btn-wd btn-next pull-right">Next</button>
-                    <a href="/" class="btn btn-info btn-fill btn-wd btn-finish pull-right">Finish</a>
+                    <button type="submit" class="btn btn-info btn-fill btn-wd btn-finish pull-right">Finish</button>
                     <div class="clearfix"></div>
                 </div>
             </form>

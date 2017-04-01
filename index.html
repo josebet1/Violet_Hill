@@ -50,7 +50,7 @@
 	                <div class="info">
 						<a data-toggle="collapse" href="#collapseExample" class="collapsed">
                             <span>
-								Jason Scharff
+								<span id="domName"></span>
 		                        <b class="caret"></b>
 							</span>
 	                    </a>
@@ -201,5 +201,37 @@
 			demo.initWizard();
 		});
 	</script>
+    
+    <script>
+        
+        // source: https://goo.gl/bxtztS
+        var QueryString = function () {
+          // This function is anonymous, is executed immediately and 
+          // the return value is assigned to QueryString!
+          var query_string = {};
+          var query = window.location.search.substring(1);
+          var vars = query.split("&");
+          for (var i=0;i<vars.length;i++) {
+            var pair = vars[i].split("=");
+                // If first entry with this name
+            if (typeof query_string[pair[0]] === "undefined") {
+              query_string[pair[0]] = decodeURIComponent(pair[1]);
+                // If second entry with this name
+            } else if (typeof query_string[pair[0]] === "string") {
+              var arr = [ query_string[pair[0]],decodeURIComponent(pair[1]) ];
+              query_string[pair[0]] = arr;
+                // If third or later entry with this name
+            } else {
+              query_string[pair[0]].push(decodeURIComponent(pair[1]));
+            }
+          } 
+          return query_string;
+        }();
+        
+        if(!QueryString.email) window.location = "wizard.html";
+        
+        var fullName = QueryString.first_name + " "  + QueryString.last_name;
+        $("#domName").html(fullName);
+    </script>
 
 </html>
