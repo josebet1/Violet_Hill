@@ -149,7 +149,7 @@ def parse_detail_view(html):
 
     }
 
-    existing_entry = db.homes.findOne({"apn": result['apn']})
+    existing_entry = db.homes.find_one({"apn": result['apn']})
     if existing_entry is None:
         db.homes.insert_one(result)
 
