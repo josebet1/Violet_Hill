@@ -44,11 +44,10 @@ def add_phone_number_to_collection():
         #all addresses appear to have an extra space at the end. Zip code is last 5 digitrs
         zip_code = obj[u'address'][-6:-1]
         numbers = search_whitepages(first_name, last_name, zip_code)
-
-        if numbers is not None and len(numbers) > 0:
-            obj['numbers'] = numbers
-            mongo_id = obj[u'_id']
-            db.casas.update({u'_id': mongo_id}, obj, upsert=False)
+        print numbers
+        obj['numbers'] = numbers
+        mongo_id = obj[u'_id']
+        db.casas.update({u'_id': mongo_id}, obj, upsert=False)
 
 
 
