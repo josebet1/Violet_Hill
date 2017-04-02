@@ -9,15 +9,13 @@ var app = express()
 
 app.get('/users', (req, res) => {
 	homes.find({}, {sort: {totalMatches: -1, value: -1}}).then((docs) => {
-		console.log(docs);
-  	// sorted by name field
+		res.send(docs);
 	});
 });
 
 app.get('/users/:id', (req, res) => {
-	homes.find({}, {sort: {value: 1}, totalMatches: {$exists : false }}).then((docs) => {
-		console.log(docs);
-  	// sorted by name field
+	homes.find({_id: id}).then((docs) => {
+		res.send(docs);
 	});
 });
 
