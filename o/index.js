@@ -6,7 +6,7 @@ const express = require('express');
 const async = require('async');
 const lob = require('lob')('test_233a99c59f3c6c735a9a6b434aedf0d4505');
 const parser = require('parse-address'); 
-const bodyParser = require('bodyParser');
+const bodyParser = require('body-parser');
 
 var app = express()
 
