@@ -7,8 +7,11 @@ const async = require('async');
 const lob = require('lob')('test_233a99c59f3c6c735a9a6b434aedf0d4505');
 const parser = require('parse-address'); 
 const bodyParser = require('body-parser');
+const cors = require('cors')
 
 var app = express()
+
+app.use(cors())
 
 bodyParser.urlencoded({extended: true});
 
