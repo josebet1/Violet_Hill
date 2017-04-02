@@ -148,7 +148,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-          <button type="button" class="btn btn-success" onclick="alert(modalType);">Send Message</button>
+          <button type="button" class="btn btn-success" data-dismiss="modal" onclick="sendMessage(modalType);">Send Message</button>
       </div>
     </div>
 
@@ -339,12 +339,14 @@
         });
         
         
-        var address = "2312 Warner Range Ave, Menlo Park, CA 94025";
-        var city = address.substring(address.indexOf(",") + 2);
-        city = city.substring(0, city.indexOf(","));
-        console.log("address:", address, "city:", city);
-        
         var modalType = "";
+        
+        var sendMessage = function(type) {
+            console.log("Sending message...");
+            $.post("http://violethill.joseb.me/users/" + type, {message:$('#modalMessage').val()}, function(data) {
+                console.log("data:", data);
+            });
+        };
     </script>
 
 </html>
