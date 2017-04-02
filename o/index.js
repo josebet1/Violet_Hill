@@ -74,3 +74,7 @@ app.post('/users/:id/mail', (req, res) => {
 
 // 	});
 // });
+
+app.listen(80, function () {
+  console.log('o app listening on port 80!')
+})
