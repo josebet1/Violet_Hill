@@ -64,25 +64,20 @@ class QueuedRequest():
         self.params = params
 
 
-def make_zillow_request():
-    while True:
-        next_request = main_request_queue.get()
-        r = requests.get(url=next_request.url, params=next_request.params)
-        try:
-            response_dict = json.loads(r.content)
-        except:
-            print r.content
-            return
-        list = response_dict['list']['listHTML']
-        get_detail_view(list)
-        main_request_queue.task_done()
+def make_zillow_request(next_request):
+    r = requests.get(url=next_request.url, params=next_request.params)
+    try:
+        response_dict = json.loads(r.content)
+    except:
+        print r.content
+        return
+    list = response_dict['list']['listHTML']
+    get_detail_view(list)
 
 
-def make_zillow_detaiL_request():
-    while True:
-        r = requests.get(url=detail_queue.get())
-        parse_detail_view(r.content)
-        detail_queue.task_done()
+def make_zillow_detaiL_request(url):
+    r = requests.get(url=url)
+    parse_detail_view(r.content)
 
 
 def parse_detail_view(html):
@@ -163,17 +158,11 @@ def get_detail_view(list):
     soup = BeautifulSoup(list, 'html.parser')
     links = soup.findAll('a', {'class': 'zsg-photo-card-overlay-link'})
 
-    def populate_queue():
-        global detail_queue
 
-        for l in links:
-            main_link = l['href']
-            link = ZILLOW_BASE_URL + main_link
-            detail_queue.put(link)
-
-        detail_queue.join()
-
-    threaded_query(make_zillow_detaiL_request, populate_queue)
+    for l in links:
+        main_link = l['href']
+        link = ZILLOW_BASE_URL + main_link
+        make_zillow_detaiL_request(link)
 
 
 def find_owner(apn):
@@ -195,8 +184,12 @@ def find_owner(apn):
     r2 = requests.get(link)
     owner_soup = BeautifulSoup(r2.content, 'html.parser')
     grantee = owner_soup.find(text='Grantee:')
-    grantee_table = grantee.parent.parent.parent
-    grantee_list = grantee_table.find('ul', {'class' : 'ui-unbulleted-list'})
+    try:
+        grantee_table = grantee.parent.parent.parent
+        grantee_list = grantee_table.find('ul', {'class': 'ui-unbulleted-list'})
+    except:
+        pass
+
     if grantee_list is None:
         people_list = [primary_listed_owner]
     else:
@@ -221,23 +214,14 @@ def get_homes():
         return
     num_pages = response_dictionary['list']['numPages']
 
-    def populate_queue():
-        for i in xrange(1, num_pages):
-            params = ZILLOW_SEARCH_STANDARD_PARAMS
-            params[ZILLOW_PAGE_PARAM_NAME] = i
-            new_request = QueuedRequest(url=ZILLOW_SEARCH_URL, params=params)
-            main_request_queue.put(new_request)
-        main_request_queue.join()
-
-    threaded_query(target=make_zillow_request, populate_queue=populate_queue)
+    for i in xrange(1, num_pages):
+        params = ZILLOW_SEARCH_STANDARD_PARAMS
+        params[ZILLOW_PAGE_PARAM_NAME] = i
+        new_request = QueuedRequest(url=ZILLOW_SEARCH_URL, params=params)
+        make_zillow_request(new_request)
 
 
-def threaded_query(target, populate_queue):
-    for i in xrange(MAX_CONNECTIONS):
-        t = Thread(target=target)
-        t.daemon = True
-        t.start()
-    populate_queue()
+
 
 
 
