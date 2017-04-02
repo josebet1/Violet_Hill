@@ -1,0 +1,441 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<link rel="apple-touch-icon" sizes="76x76" href="assets/img/apple-icon.png?v=1">
+	<link rel="icon" type="image/png" sizes="96x96" href="assets/img/favicon.png?v=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+	<title>Violet Hill Setup</title>
+
+	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+    <meta name="viewport" content="width=device-width" />
+
+
+     <!-- Bootstrap core CSS     -->
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet" />
+
+    <!--  Paper Dashboard core CSS    -->
+    <link href="assets/css/paper-dashboard.css" rel="stylesheet"/>
+
+
+    <!--  CSS for Demo Purpose, don't include it in your project     -->
+    <link href="assets/css/demo.css" rel="stylesheet" />
+
+
+    <!--  Fonts and icons     -->
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Muli:400,300' rel='stylesheet' type='text/css'>
+    <link href="assets/css/themify-icons.css" rel="stylesheet">
+    
+    <style>
+        body { background-color: darkviolet; }
+        .card-title { font-size: 36px; font-weight:bold; }
+        .category { font-size: 18px !important; }
+    </style>
+</head>  
+
+<body class="content container-fluid">
+    <br><br>
+<div class="row">
+    <div class="col-md-8 col-md-offset-2">
+        <div class="card card-wizard" id="wizardCard">
+            <form id="wizardForm" method="get" action="index.html">
+                <div class="card-header text-center">
+                    <h4 class="card-title">Get Started with Violet Hill</h4>
+                    <p class="category">We just need a bit of info before we begin.</p>
+                </div>
+                <div class="card-content">
+                    <ul class="nav">
+                        <li><a href="#tab1" data-toggle="tab">Personal Info</a></li>
+                        <li><a href="#tab2" data-toggle="tab">Company Info</a></li>
+                        <li><a href="#tab3" data-toggle="tab">Confirmation</a></li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane" id="tab1">
+                            <h5 class="text-center">Please tell us about yourself.</h5>
+                            <div class="row">
+                                <div class="col-md-5 col-md-offset-1">
+                                    <div class="form-group">
+                                        <label class="control-label">
+                                            First Name<star>*</star>
+                                        </label>
+                                        <input class="form-control"
+                                               type="text"
+                                               name="first_name"
+                                               placeholder="ex: Mike"
+                                        />
+                                    </div>
+                                </div>
+                                <div class="col-md-5">
+                                    <div class="form-group">
+                                        <label class="control-label">
+                                            Last Name<star>*</star>
+                                        </label>
+                                        <input class="form-control"
+                                               type="text"
+                                               name="last_name"
+                                               required="true"
+                                               placeholder="ex: Andrew"
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-10 col-md-offset-1">
+                                    <div class="form-group">
+                                        <label class="control-label">
+                                            Email<star>*</star>
+                                        </label>
+                                        <input class="form-control"
+                                               type="text"
+                                               name="email"
+                                               email="true"
+                                               placeholder="ex: hello@creative-tim.com"
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane" id="tab2">
+                            <h5 class="text-center">Please give us more details about your platform.</h5>
+                            <div class="row">
+                                <div class="col-md-5 col-md-offset-1">
+                                    <div class="form-group">
+                                        <label class="control-label">Your Slide Deck<star>*</star></label>
+                                        <input class="form-control"
+                                               type="text"
+                                               name="slide_deck"
+                                               url="true"
+                                               placeholder="ex: http://www.example.com/slides"
+                                               value="http://www.example.com/slides"
+                                        />
+                                    </div>
+                                </div>
+                                <div class="col-md-5">
+                                    <div class="form-group">
+                                        <label class="control-label">
+                                            Industry<star>*</star>
+                                        </label>
+                                        <!--     IMPORTANT! - the "bootstrap select picker" is not compatible with jquery.validation.js, that's why we use the "default select" inside this wizard. We will try to contact the guys who are responsibble for the "bootstrap select picker" to find a solution. Thank you for your patience.
+                                         -->
+                                        <select name="industry" class="form-control">
+                                            <option selected="" disabled="">- industry -</option>
+                                            <option value="Abortion Policy/Anti-Abortion">Abortion Policy/Anti-Abortion</option>
+                                            <option value="Abortion Policy/Pro-Abortion Rights">Abortion Policy/Pro-Abortion Rights</option>
+                                            <option value="Accountants">Accountants</option>
+                                            <option value="Advertising/Public Relations">Advertising/Public Relations</option>
+                                            <option value="Aerospace, Defense Contractors">Aerospace, Defense Contractors</option>
+                                            <option value="Agribusiness">Agribusiness</option>
+                                            <option value="Agricultural Services & Products">Agricultural Services &amp; Products</option>
+                                            <option value="Agriculture">Agriculture</option>
+                                            <option value="Air Transport">Air Transport</option>
+                                            <option value="Air Transport Unions">Air Transport Unions</option>
+                                            <option value="Airlines">Airlines</option>
+                                            <option value="Alcoholic Beverages">Alcoholic Beverages</option>
+                                            <option value="Alternative Energy Production & Services">Alternative Energy Production &amp; Services</option>
+                                            <option value="Architectural Services">Architectural Services</option>
+                                            <option value="Attorneys/Law Firms">Attorneys/Law Firms</option>
+                                            <option value="Auto Dealers">Auto Dealers</option>
+                                            <option value="Auto Dealers, Japanese">Auto Dealers, Japanese</option>
+                                            <option value="Auto Manufacturers">Auto Manufacturers</option>
+                                            <option value="Automotive">Automotive</option>
+                                            <option value="Banking, Mortgage">Banking, Mortgage</option>
+                                            <option value="Banks, Commercial">Banks, Commercial</option>
+                                            <option value="Banks, Savings & Loans">Banks, Savings &amp; Loans</option>
+                                            <option value="Bars & Restaurants">Bars &amp; Restaurants</option>
+                                            <option value="Beer, Wine & Liquor">Beer, Wine &amp; Liquor</option>
+                                            <option value="Books, Magazines & Newspapers">Books, Magazines &amp; Newspapers</option>
+                                            <option value="Broadcasters, Radio/TV">Broadcasters, Radio/TV</option>
+                                            <option value="Builders/General Contractors">Builders/General Contractors</option>
+                                            <option value="Builders/Residential">Builders/Residential</option>
+                                            <option value="Building Materials & Equipment">Building Materials &amp; Equipment</option>
+                                            <option value="Building Trade Unions ">Building Trade Unions </option>
+                                            <option value="Business Associations">Business Associations</option>
+                                            <option value="Business Services">Business Services</option>
+                                            <option value="Cable & Satellite TV Production & Distribution">Cable &amp; Satellite TV Production &amp; Distribution</option>
+                                            <option value="Candidate Committees ">Candidate Committees </option>
+                                            <option value="Candidate Committees, Democratic">Candidate Committees, Democratic</option>
+                                            <option value="Candidate Committees, Republican">Candidate Committees, Republican</option>
+                                            <option value="Car Dealers">Car Dealers</option>
+                                            <option value="Car Dealers, Imports">Car Dealers, Imports</option>
+                                            <option value="Car Manufacturers">Car Manufacturers</option>
+                                            <option value="Casinos / Gambling">Casinos / Gambling</option>
+                                            <option value="Cattle Ranchers/Livestock">Cattle Ranchers/Livestock</option>
+                                            <option value="Chemical & Related Manufacturing">Chemical &amp; Related Manufacturing</option>
+                                            <option value="Chiropractors">Chiropractors</option>
+                                            <option value="Civil Servants/Public Officials">Civil Servants/Public Officials</option>
+                                            <option value="Clergy & Religious Organizations ">Clergy &amp; Religious Organizations </option>
+                                            <option value="Clothing Manufacturing">Clothing Manufacturing</option>
+                                            <option value="Coal Mining">Coal Mining</option>
+                                            <option value="Colleges, Universities & Schools">Colleges, Universities &amp; Schools</option>
+                                            <option value="Commercial Banks">Commercial Banks</option>
+                                            <option value="Commercial TV & Radio Stations">Commercial TV &amp; Radio Stations</option>
+                                            <option value="Communications/Electronics">Communications/Electronics</option>
+                                            <option value="Computer Software">Computer Software</option>
+                                            <option value="Conservative/Republican">Conservative/Republican</option>
+                                            <option value="Construction">Construction</option>
+                                            <option value="Construction Services">Construction Services</option>
+                                            <option value="Construction Unions">Construction Unions</option>
+                                            <option value="Credit Unions">Credit Unions</option>
+                                            <option value="Crop Production & Basic Processing">Crop Production &amp; Basic Processing</option>
+                                            <option value="Cruise Lines">Cruise Lines</option>
+                                            <option value="Cruise Ships & Lines">Cruise Ships &amp; Lines</option>
+                                            <option value="Dairy">Dairy</option>
+                                            <option value="Defense">Defense</option>
+                                            <option value="Defense Aerospace">Defense Aerospace</option>
+                                            <option value="Defense Electronics">Defense Electronics</option>
+                                            <option value="Defense/Foreign Policy Advocates">Defense/Foreign Policy Advocates</option>
+                                            <option value="Democratic Candidate Committees ">Democratic Candidate Committees </option>
+                                            <option value="Democratic Leadership PACs">Democratic Leadership PACs</option>
+                                            <option value="Democratic/Liberal ">Democratic/Liberal </option>
+                                            <option value="Dentists">Dentists</option>
+                                            <option value="Doctors & Other Health Professionals">Doctors &amp; Other Health Professionals</option>
+                                            <option value="Drug Manufacturers">Drug Manufacturers</option>
+                                            <option value="Education ">Education </option>
+                                            <option value="Electric Utilities">Electric Utilities</option>
+                                            <option value="Electronics Manufacturing & Equipment">Electronics Manufacturing &amp; Equipment</option>
+                                            <option value="Electronics, Defense Contractors">Electronics, Defense Contractors</option>
+                                            <option value="Energy & Natural Resources">Energy &amp; Natural Resources</option>
+                                            <option value="Entertainment Industry">Entertainment Industry</option>
+                                            <option value="Environment ">Environment </option>
+                                            <option value="Farm Bureaus">Farm Bureaus</option>
+                                            <option value="Farming">Farming</option>
+                                            <option value="Finance / Credit Companies">Finance / Credit Companies</option>
+                                            <option value="Finance, Insurance & Real Estate">Finance, Insurance &amp; Real Estate</option>
+                                            <option value="Food & Beverage">Food &amp; Beverage</option>
+                                            <option value="Food Processing & Sales">Food Processing &amp; Sales</option>
+                                            <option value="Food Products Manufacturing">Food Products Manufacturing</option>
+                                            <option value="Food Stores">Food Stores</option>
+                                            <option value="For-profit Education">For-profit Education</option>
+                                            <option value="Foreign & Defense Policy ">Foreign &amp; Defense Policy </option>
+                                            <option value="Forestry & Forest Products">Forestry &amp; Forest Products</option>
+                                            <option value="Foundations, Philanthropists & Non-Profits">Foundations, Philanthropists &amp; Non-Profits</option>
+                                            <option value="Funeral Services">Funeral Services</option>
+                                            <option value="Gambling & Casinos">Gambling &amp; Casinos</option>
+                                            <option value="Gambling, Indian Casinos">Gambling, Indian Casinos</option>
+                                            <option value="Garbage Collection/Waste Management">Garbage Collection/Waste Management</option>
+                                            <option value="Gas & Oil">Gas &amp; Oil</option>
+                                            <option value="Gay & Lesbian Rights & Issues">Gay &amp; Lesbian Rights &amp; Issues</option>
+                                            <option value="General Contractors">General Contractors</option>
+                                            <option value="Government Employee Unions">Government Employee Unions</option>
+                                            <option value="Government Employees">Government Employees</option>
+                                            <option value="Gun Control ">Gun Control </option>
+                                            <option value="Gun Rights ">Gun Rights </option>
+                                            <option value="Health">Health</option>
+                                            <option value="Health Professionals">Health Professionals</option>
+                                            <option value="Health Services/HMOs">Health Services/HMOs</option>
+                                            <option value="Hedge Funds">Hedge Funds</option>
+                                            <option value="HMOs & Health Care Services">HMOs &amp; Health Care Services</option>
+                                            <option value="Home Builders">Home Builders</option>
+                                            <option value="Hospitals & Nursing Homes">Hospitals &amp; Nursing Homes</option>
+                                            <option value="Hotels, Motels & Tourism">Hotels, Motels &amp; Tourism</option>
+                                            <option value="Human Rights ">Human Rights </option>
+                                            <option value="Ideological/Single-Issue">Ideological/Single-Issue</option>
+                                            <option value="Indian Gaming">Indian Gaming</option>
+                                            <option value="Industrial Unions ">Industrial Unions </option>
+                                            <option value="Insurance">Insurance</option>
+                                            <option value="Internet">Internet</option>
+                                            <option value="Israel Policy">Israel Policy</option>
+                                            <option value="Labor">Labor</option>
+                                            <option value="Lawyers & Lobbyists">Lawyers &amp; Lobbyists</option>
+                                            <option value="Lawyers / Law Firms">Lawyers / Law Firms</option>
+                                            <option value="Leadership PACs ">Leadership PACs </option>
+                                            <option value="Liberal/Democratic">Liberal/Democratic</option>
+                                            <option value="Liquor, Wine & Beer">Liquor, Wine &amp; Beer</option>
+                                            <option value="Livestock">Livestock</option>
+                                            <option value="Lobbyists">Lobbyists</option>
+                                            <option value="Lodging / Tourism">Lodging / Tourism</option>
+                                            <option value="Logging, Timber & Paper Mills">Logging, Timber &amp; Paper Mills</option>
+                                            <option value="Manufacturing, Misc">Manufacturing, Misc</option>
+                                            <option value="Marine Transport">Marine Transport</option>
+                                            <option value="Meat processing & products">Meat processing &amp; products</option>
+                                            <option value="Medical Supplies">Medical Supplies</option>
+                                            <option value="Mining">Mining</option>
+                                            <option value="Misc Business">Misc Business</option>
+                                            <option value="Misc Finance">Misc Finance</option>
+                                            <option value="Misc Manufacturing & Distributing ">Misc Manufacturing &amp; Distributing </option>
+                                            <option value="Misc Unions ">Misc Unions </option>
+                                            <option value="Miscellaneous Defense">Miscellaneous Defense</option>
+                                            <option value="Miscellaneous Services">Miscellaneous Services</option>
+                                            <option value="Mortgage Bankers & Brokers">Mortgage Bankers &amp; Brokers</option>
+                                            <option value="Motion Picture Production & Distribution">Motion Picture Production &amp; Distribution</option>
+                                            <option value="Music Production">Music Production</option>
+                                            <option value="Natural Gas Pipelines">Natural Gas Pipelines</option>
+                                            <option value="Newspaper, Magazine & Book Publishing">Newspaper, Magazine &amp; Book Publishing</option>
+                                            <option value="Non-profits, Foundations & Philanthropists">Non-profits, Foundations &amp; Philanthropists</option>
+                                            <option value="Nurses">Nurses</option>
+                                            <option value="Nursing Homes/Hospitals">Nursing Homes/Hospitals</option>
+                                            <option value="Nutritional & Dietary Supplements">Nutritional &amp; Dietary Supplements</option>
+                                            <option value="Oil & Gas">Oil &amp; Gas</option>
+                                            <option value="Other">Other</option>
+                                            <option value="Payday Lenders">Payday Lenders</option>
+                                            <option value="Pharmaceutical Manufacturing">Pharmaceutical Manufacturing</option>
+                                            <option value="Pharmaceuticals / Health Products">Pharmaceuticals / Health Products</option>
+                                            <option value="Phone Companies">Phone Companies</option>
+                                            <option value="Physicians & Other Health Professionals">Physicians &amp; Other Health Professionals</option>
+                                            <option value="Postal Unions">Postal Unions</option>
+                                            <option value="Poultry & Eggs">Poultry &amp; Eggs</option>
+                                            <option value="Power Utilities">Power Utilities</option>
+                                            <option value="Printing & Publishing">Printing &amp; Publishing</option>
+                                            <option value="Private Equity & Investment Firms">Private Equity &amp; Investment Firms</option>
+                                            <option value="Pro-Israel ">Pro-Israel </option>
+                                            <option value="Professional Sports, Sports Arenas & Related Equipment & Services">Professional Sports, Sports Arenas &amp; Related Equipment &amp; Services</option>
+                                            <option value="Progressive/Democratic">Progressive/Democratic</option>
+                                            <option value="Public Employees">Public Employees</option>
+                                            <option value="Public Sector Unions ">Public Sector Unions </option>
+                                            <option value="Publishing & Printing">Publishing &amp; Printing</option>
+                                            <option value="Radio/TV Stations">Radio/TV Stations</option>
+                                            <option value="Railroads">Railroads</option>
+                                            <option value="Real Estate">Real Estate</option>
+                                            <option value="Record Companies/Singers">Record Companies/Singers</option>
+                                            <option value="Recorded Music & Music Production">Recorded Music &amp; Music Production</option>
+                                            <option value="Recreation / Live Entertainment">Recreation / Live Entertainment</option>
+                                            <option value="Religious Organizations/Clergy">Religious Organizations/Clergy</option>
+                                            <option value="Republican Candidate Committees ">Republican Candidate Committees </option>
+                                            <option value="Republican Leadership PACs">Republican Leadership PACs</option>
+                                            <option value="Republican/Conservative ">Republican/Conservative </option>
+                                            <option value="Residential Construction">Residential Construction</option>
+                                            <option value="Restaurants & Drinking Establishments">Restaurants &amp; Drinking Establishments</option>
+                                            <option value="Retail Sales">Retail Sales</option>
+                                            <option value="Retired ">Retired </option>
+                                            <option value="Savings & Loans">Savings &amp; Loans</option>
+                                            <option value="Schools/Education">Schools/Education</option>
+                                            <option value="Sea Transport">Sea Transport</option>
+                                            <option value="Securities & Investment">Securities &amp; Investment</option>
+                                            <option value="Special Trade Contractors">Special Trade Contractors</option>
+                                            <option value="Sports, Professional">Sports, Professional</option>
+                                            <option value="Steel Production ">Steel Production </option>
+                                            <option value="Stock Brokers/Investment Industry">Stock Brokers/Investment Industry</option>
+                                            <option value="Student Loan Companies">Student Loan Companies</option>
+                                            <option value="Sugar Cane & Sugar Beets">Sugar Cane &amp; Sugar Beets</option>
+                                            <option value="Teachers Unions">Teachers Unions</option>
+                                            <option value="Teachers/Education">Teachers/Education</option>
+                                            <option value="Telecom Services & Equipment">Telecom Services &amp; Equipment</option>
+                                            <option value="Telephone Utilities">Telephone Utilities</option>
+                                            <option value="Textiles ">Textiles </option>
+                                            <option value="Timber, Logging & Paper Mills">Timber, Logging &amp; Paper Mills</option>
+                                            <option value="Tobacco">Tobacco</option>
+                                            <option value="Transportation">Transportation</option>
+                                            <option value="Transportation Unions ">Transportation Unions </option>
+                                            <option value="Trash Collection/Waste Management">Trash Collection/Waste Management</option>
+                                            <option value="Trucking">Trucking</option>
+                                            <option value="TV / Movies / Music">TV / Movies / Music</option>
+                                            <option value="TV Production">TV Production</option>
+                                            <option value="Unions">Unions</option>
+                                            <option value="Unions, Airline">Unions, Airline</option>
+                                            <option value="Unions, Building Trades">Unions, Building Trades</option>
+                                            <option value="Unions, Industrial">Unions, Industrial</option>
+                                            <option value="Unions, Misc">Unions, Misc</option>
+                                            <option value="Unions, Public Sector">Unions, Public Sector</option>
+                                            <option value="Unions, Teacher">Unions, Teacher</option>
+                                            <option value="Unions, Transportation">Unions, Transportation</option>
+                                            <option value="Universities, Colleges & Schools">Universities, Colleges &amp; Schools</option>
+                                            <option value="Vegetables & Fruits">Vegetables &amp; Fruits</option>
+                                            <option value="Venture Capital">Venture Capital</option>
+                                            <option value="Waste Management">Waste Management</option>
+                                            <option value="Wine, Beer & Liquor">Wine, Beer &amp; Liquor</option>
+                                            <option value="Women's Issues">Women's Issues</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-10 col-md-offset-1">
+                                    <div class="form-group">
+                                        <label class="control-label">Elevator Pitch (max 300 chars)<star>*</star></label>
+                                        <input class="form-control"
+                                               type="text"
+                                               name="elevator_pitch"
+                                               placeholder="Elevator Pitch"
+                                               value="Hey there this is a sample elevator pitch"
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane" id="tab3">
+                            <h2 class="text-center text-space">Nice Job<br><small> 													Click on "<b>Finish</b>" to complete your registration.</small></h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <button type="button" class="btn btn-default btn-fill btn-wd btn-back pull-left">Back</button>
+                    <button type="button" class="btn btn-info btn-fill btn-wd btn-next pull-right">Next</button>
+                    <button type="submit" class="btn btn-info btn-fill btn-wd btn-finish pull-right">Finish</button>
+                    <div class="clearfix"></div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+    
+</body>
+    
+	<!--   Core JS Files. Extra: TouchPunch for touch library inside jquery-ui.min.js   -->
+	<script src="assets/js/jquery-3.1.1.min.js" type="text/javascript"></script>
+	<script src="assets/js/jquery-ui.min.js" type="text/javascript"></script>
+	<script src="assets/js/perfect-scrollbar.min.js" type="text/javascript"></script>
+	<script src="assets/js/bootstrap.min.js" type="text/javascript"></script>
+
+	<!--  Forms Validations Plugin -->
+	<script src="assets/js/jquery.validate.min.js"></script>
+
+	<!-- Promise Library for SweetAlert2 working on IE -->
+	<script src="assets/js/es6-promise-auto.min.js"></script>
+
+	<!--  Plugin for Date Time Picker and Full Calendar Plugin-->
+	<script src="assets/js/moment.min.js"></script>
+
+	<!--  Date Time Picker Plugin is included in this js file -->
+	<script src="assets/js/bootstrap-datetimepicker.js"></script>
+
+	<!--  Select Picker Plugin -->
+	<script src="assets/js/bootstrap-selectpicker.js"></script>
+
+	<!--  Switch and Tags Input Plugins -->
+	<script src="assets/js/bootstrap-switch-tags.js"></script>
+
+	<!-- Circle Percentage-chart -->
+	<script src="assets/js/jquery.easypiechart.min.js"></script>
+
+	<!--  Charts Plugin -->
+	<script src="assets/js/chartist.min.js"></script>
+
+	<!--  Notifications Plugin    -->
+	<script src="assets/js/bootstrap-notify.js"></script>
+
+	<!-- Sweet Alert 2 plugin -->
+	<script src="assets/js/sweetalert2.js"></script>
+
+	<!-- Vector Map plugin -->
+	<script src="assets/js/jquery-jvectormap.js"></script>
+
+	<!--  Google Maps Plugin    -->
+	<!--<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>-->
+
+	<!-- Wizard Plugin    -->
+	<script src="assets/js/jquery.bootstrap.wizard.min.js"></script>
+
+	<!--  Bootstrap Table Plugin    -->
+	<script src="assets/js/bootstrap-table.js"></script>
+
+	<!--  Plugin for DataTables.net  -->
+	<script src="assets/js/jquery.datatables.js"></script>
+
+	<!--  Full Calendar Plugin    -->
+	<script src="assets/js/fullcalendar.min.js"></script>
+
+	<!-- Paper Dashboard PRO Core javascript and methods for Demo purpose -->
+	<script src="assets/js/paper-dashboard.js"></script>
+
+	<!-- Paper Dashboard PRO DEMO methods, don't include it in your project! -->
+	<script src="assets/js/demo.js"></script>
+
+	<script type="text/javascript">
+        $(document).ready(function(){
+			demo.initWizard();
+		});
+	</script>
+    
+</html>
