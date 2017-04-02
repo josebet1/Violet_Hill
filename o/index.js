@@ -4,8 +4,13 @@ const db = require('monk')('mongodb://cold:Test12345!@ds149030.mlab.com:49030/hi
 const homes = db.get('casas')
 const express = require('express');
 const async = require('async');
+const lob = require('lob')('test_233a99c59f3c6c735a9a6b434aedf0d4505');
+const parser = require('parse-address'); 
+const bodyParser = require('bodyParser');
 
 var app = express()
+
+bodyParser.urlencoded({extended: true});
 
 app.get('/users', (req, res) => {
 	homes.find({}, {sort: {totalMatches: -1, value: -1}}).then((docs) => {
@@ -32,6 +37,33 @@ app.get('/users/:id/mail', (req, res) => {
 });
 
 app.post('/users/:id/mail', (req, res) => {
+	homes.find({_id: id}).then((user) => {
+		const parsedAddress = parser.parseLocation(user.address);
+		Lob.letters.create({
+		  description: `${user.first_name} ${user.last_name} Letter`,
+		  to: {
+		    name: `${user.first_name} ${user.last_name}`,
+		    address_line1: `${parsedAddress.number} ${parsedAddress.prefix} ${parsedAddress.street}`,
+		    address_city: `${parsedAddress.city}`,
+		    address_state: `${parsedAddress.state}`,
+		    address_zip: `${parsedAddress.zip}`,
+		    address_country: 'US',
+		  },
+		  from: {
+		    name: 'John Scharff',
+		    address_line1: '123 Test Avenue',
+		    address_city: 'Mountain View',
+		    address_state: 'CA',
+		    address_zip: '94041',
+		    address_country: 'US',
+		  },
+		  file: `<html style="padding-top: 3in; margin: .5in;">${req.body.message}</html>`,
+		  color: false
+		}, function (err, res) {
+		  console.log(err, res);
+		});
+	});
+
 
 });
 

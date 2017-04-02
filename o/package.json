@@ -10,10 +10,12 @@
   "license": "MIT",
   "dependencies": {
     "async": "^2.2.0",
+    "body-parser": "^1.17.1",
     "cheerio": "^0.22.0",
     "cookie": "^0.3.1",
     "express": "^4.15.2",
     "monk": "^4.0.0",
+    "parse-address": "0.0.6",
     "request": "^2.81.0"
   }
 }
