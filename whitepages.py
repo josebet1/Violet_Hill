@@ -38,16 +38,16 @@ def search_whitepages(first_name, last_name, zip_code):
 def add_phone_number_to_collection():
     items = db.casas.find()
     for obj in items:
-        first_name = obj['first_name']
-        last_name = obj['last_name']
+        first_name = obj[u'first_name']
+        last_name = obj[u'last_name']
         #all addresses appear to have an extra space at the end. Zip code is last 5 digitrs
-        zip_code = obj[-6:-1]
+        zip_code = obj[u'address'][-6:-1]
         numbers = search_whitepages(first_name, last_name, zip_code)
 
         if numbers is not None and len(numbers) > 0:
             obj['numbers'] = numbers
-            mongo_id = obj['_id']
-            db.casas.update({'_id': mongo_id}, obj, upsert=False)
+            mongo_id = obj[u'_id']
+            db.casas.update({u'_id': mongo_id}, obj, upsert=False)
 
 
 
