@@ -3,18 +3,16 @@ import time
 import re
 from pymongo import MongoClient
 import os
-import dryscrape
+from selenium import  webdriver
 
 #note this is 100% synchronous, but works. Would need to be modified to be more efficient
 
 def search_whitepages(first_name, last_name, zip_code):
     url = 'http://www.whitepages.com/name/{}-{}/{}'.format(first_name, last_name, zip_code)
-    dryscrape.start_xvfb()
-    session = dryscrape.Session()
 
-    session.visit(url)
-    source = session.body()
-    print source
+    browser.get(url)
+    time.sleep(4)
+    source = browser.page_source
 
     soup = BeautifulSoup(source, 'html.parser')
     button = soup.find(text='View Free Details')
@@ -23,9 +21,10 @@ def search_whitepages(first_name, last_name, zip_code):
     parent = button.parent.parent
     link = 'http://www.whitepages.com' + parent['href']
 
-    session.visit(link)
+    browser.get(link)
+    time.sleep(2)
 
-    phone_source = session.body()
+    phone_source = browser.page_source
     pattern = 'dfpSetTargetingParams\["rpn"] = "([0-9*]*)"'
     phone_numbers = re.findall(pattern, phone_source)
 
@@ -51,7 +50,7 @@ def add_phone_number_to_collection():
         db.casas.update({u'_id': mongo_id}, obj, upsert=False)
 
 
-
+browser = webdriver.PhantomJS()
 uri = os.environ['MONGODB_URI']
 client = MongoClient(uri)
 db = client.hill
