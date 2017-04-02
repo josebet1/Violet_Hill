@@ -9,7 +9,7 @@ import os
 
 
 #constants
-MAX_CONNECTIONS = 5
+MAX_CONNECTIONS = 10
 
 ZILLOW_BASE_URL = 'https://www.zillow.com'
 ZILLOW_SEARCH_URL = 'https://www.zillow.com/search/GetResults.htm'
