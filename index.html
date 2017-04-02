@@ -148,7 +148,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-          <button type="button" class="btn btn-default" onclick="alert(modalType);">Save</button>
+          <button type="button" class="btn btn-success" onclick="alert(modalType);">Send Message</button>
       </div>
     </div>
 
@@ -164,7 +164,8 @@
 	                                <div class="toolbar">
 	                                    <!--Here you can write extra buttons/actions for the toolbar-->
 	                                </div>
-	                                <table id="bootstrap-table" class="table">
+                                    <p id="bootstrap-table-loading">Loading results...</p>
+	                                <table id="bootstrap-table" class="table" style="display:none;">
 	                                    <thead>
 	                                        <th data-field="state" data-checkbox="true"></th>
 	                                    	<th data-field="name" data-sortable="true">Name</th>
@@ -172,15 +173,15 @@
                                             <th data-field="house_value">House Value</th>
 	                                    	<th data-field="actions" class="td-actions text-right" data-events="operateEvents" data-formatter="operateFormatter">Actions</th>
 	                                    </thead>
-	                                    <tbody>
+	                                    <tbody id="domResults">
 	                                        <tr>
 	                                            <td></td>
 	                                        	<td>Dakota Rice</td>
 	                                        	<td>Menlo Park</td>
                                                 <td>$36,738</td>
 	                                        	<td>
-                                                    <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal" onclick="modalType='email'; updateModal('Dakota');">Email</button>
-                                                    <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal" onclick="modalType='mail'; updateModal('Dakota');">Mail</button>
+                                                    <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal" onclick="modalType='1/email'; updateModal('Dakota');">Email</button>
+                                                    <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal" onclick="modalType='1/mail'; updateModal('Dakota');">Mail</button>
                                                 </td>
 	                                        </tr>
 	                                    </tbody>
@@ -299,6 +300,43 @@
         }
         
         updateModal("there");
+        String.prototype.toProperCase = function () {
+            return this.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
+        };
+        
+        $.get("http://violethill.joseb.me/users", function(data) {
+            var result = "";
+                for(var i = 0; i < 20; i++) {
+                    var entry = data[i];
+                        var address = entry.address;
+                        if(address === undefined) var city = "unknown";
+                        else {
+                            var city = address.substring(address.indexOf(",") + 2);
+                            city = city.substring(0, city.indexOf(","));
+                        }
+                    if(entry.first_name === undefined) {
+                        var contact = "there";
+                        entry.first_name = "unknown";
+                        entry.last_name = "";
+                    }
+                    else var contact = entry.first_name;
+                    
+                    if(entry.value !== undefined)
+                        result += "<tr>" +
+                                    "<td></td>" +
+                                    "<td>" + entry.first_name.toProperCase() + " " + entry.last_name.toProperCase() + "</td>" +
+                                    "<td>" + city + "</td>" +
+                                    "<td>$" + entry.value.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,') + "</td>" +
+                                    "<td>" + 
+                                        "<button type=\"button\" class=\"btn btn-info btn-sm\" data-toggle=\"modal\" data-target=\"#myModal\" onclick=\"modalType='" + entry._id + "/email'; updateModal('" + entry.first_name.toProperCase() + "');\">Email</button>" + 
+                                        "<button type=\"button\" class=\"btn btn-info btn-sm\" data-toggle=\"modal\" data-target=\"#myModal\" onclick=\"modalType='" + entry._id + "/mail'; updateModal('" + entry.first_name.toProperCase() + "');\">Mail</button>" +
+                                    "</td>" +
+                                "</tr>";
+                }
+            $("#domResults").html(result);
+            $("#bootstrap-table").show();
+            $("#bootstrap-table-loading").hide();
+        });
         
         
         var address = "2312 Warner Range Ave, Menlo Park, CA 94025";
