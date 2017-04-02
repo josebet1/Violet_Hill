@@ -28,7 +28,9 @@ app.get('/users/:id', (req, res) => {
 });
 
 app.get('/users/:id/email', (req, res) => {
-
+	homes.find({_id: id}).then((user) => {
+		res.json(user);
+	});
 });
 
 app.post('/users/:id/email', (req, res) => {
