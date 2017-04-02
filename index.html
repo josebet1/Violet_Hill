@@ -267,6 +267,12 @@
         var industry = QueryString.industry;
         $("#domIndustry").html(industry.replace(/\+/g, " "));
         
+        
+        var address = "2312 Warner Range Ave, Menlo Park, CA 94025";
+        var city = address.substring(address.indexOf(",") + 2);
+        city = city.substring(0, city.indexOf(","));
+        console.log("address:", address, "city:", city);
+        
     </script>
 
 </html>
