@@ -184,6 +184,7 @@ def find_owner(apn):
     r2 = requests.get(link)
     owner_soup = BeautifulSoup(r2.content, 'html.parser')
     grantee = owner_soup.find(text='Grantee:')
+    grantee_list = None
     try:
         grantee_table = grantee.parent.parent.parent
         grantee_list = grantee_table.find('ul', {'class': 'ui-unbulleted-list'})
