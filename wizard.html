@@ -40,7 +40,7 @@
 <div class="row">
     <div class="col-md-8 col-md-offset-2">
         <div class="card card-wizard" id="wizardCard">
-            <form id="wizardForm" method="get" action="/">
+            <form id="wizardForm" method="get" action="index.html">
                 <div class="card-header text-center">
                     <h4 class="card-title">Get Started with Violet Hill</h4>
                     <p class="category">We just need a bit of info before we begin.</p>
@@ -58,7 +58,7 @@
                                 <div class="col-md-5 col-md-offset-1">
                                     <div class="form-group">
                                         <label class="control-label">
-                                            First Name
+                                            First Name<star>*</star>
                                         </label>
                                         <input class="form-control"
                                                type="text"
@@ -70,7 +70,7 @@
                                 <div class="col-md-5">
                                     <div class="form-group">
                                         <label class="control-label">
-                                            Last Name
+                                            Last Name<star>*</star>
                                         </label>
                                         <input class="form-control"
                                                type="text"
@@ -108,6 +108,7 @@
                                                name="slide_deck"
                                                url="true"
                                                placeholder="ex: http://www.example.com/slides"
+                                               value="http://www.example.com/slides"
                                         />
                                     </div>
                                 </div>
@@ -347,6 +348,7 @@
                                                type="text"
                                                name="elevator_pitch"
                                                placeholder="Elevator Pitch"
+                                               value="Hey there this is a sample elevator pitch"
                                         />
                                     </div>
                                 </div>

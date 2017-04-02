@@ -642,11 +642,11 @@ demo = {
                     minlength: 5
     		    },
     		    first_name: {
-    		        required: false,
+    		        required: true,
                     minlength: 1
     		    },
     		    last_name: {
-    		        required: false,
+    		        required: true,
                     minlength: 1
     		    },
     		    slide_deck: {
