@@ -1,14 +1,18 @@
-from selenium import webdriver
 from bs4 import BeautifulSoup
 import time
 import re
+from pymongo import MongoClient
+import os
+import dryscrape
+
+#note this is 100% synchronous, but works. Would need to be modified to be more efficient
 
 def search_whitepages(first_name, last_name, zip_code):
     url = 'http://www.whitepages.com/name/{}-{}/{}'.format(first_name, last_name, zip_code)
+    session = dryscrape.Session()
 
-    browser.get(url)
-    time.sleep(4)
-    source = browser.page_source
+    session.visit(url)
+    source = session.body()
 
     soup = BeautifulSoup(source, 'html.parser')
     button = soup.find(text='View Free Details')
@@ -17,10 +21,9 @@ def search_whitepages(first_name, last_name, zip_code):
     parent = button.parent.parent
     link = 'http://www.whitepages.com' + parent['href']
 
-    browser.get(link)
-    time.sleep(2)
+    session.visit(link)
 
-    phone_source = browser.page_source
+    phone_source = session.body()
     pattern = 'dfpSetTargetingParams\["rpn"] = "([0-9*]*)"'
     phone_numbers = re.findall(pattern, phone_source)
 
@@ -28,13 +31,33 @@ def search_whitepages(first_name, last_name, zip_code):
     for p in phone_numbers:
         phone_list.append(p)
 
-    print phone_list
+    return phone_list
 
 
-#create once so there aren't a huge number of firefox things.
-browser = webdriver.Firefox()
 
-search_whitepages('first', 'last', 'zip')
+def add_phone_number_to_collection():
+    items = db.casas.find()
+    for obj in items:
+        first_name = obj['first_name']
+        last_name = obj['last_name']
+        #all addresses appear to have an extra space at the end. Zip code is last 5 digitrs
+        zip_code = obj[-6:-1]
+        numbers = search_whitepages(first_name, last_name, zip_code)
+
+        if numbers is not None and len(numbers) > 0:
+            obj['numbers'] = numbers
+            mongo_id = obj['_id']
+            db.casas.update({'_id': mongo_id}, obj, upsert=False)
+
+
+
+uri = os.environ['MONGODB_URI']
+client = MongoClient(uri)
+db = client.hill
+
+add_phone_number_to_collection()
+
+
 
 
 
