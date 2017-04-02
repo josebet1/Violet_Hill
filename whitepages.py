@@ -13,6 +13,7 @@ def search_whitepages(first_name, last_name, zip_code):
     browser.get(url)
     time.sleep(4)
     source = browser.page_source
+    print source
 
     soup = BeautifulSoup(source, 'html.parser')
     button = soup.find(text='View Free Details')
