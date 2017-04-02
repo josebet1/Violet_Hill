@@ -155,7 +155,7 @@ def parse_detail_view(html):
 
         print result
 
-        existing_entry = db.casas.find_one({"apn": result['apn'], 'first_name' : {'$ne' : result['first_name']}})
+        existing_entry = db.casas.find_one({"apn": result['apn']}, {'first_name' : {'$ne' : result['first_name']}})
         if existing_entry is None:
             db.casas.insert_one(result)
 
