@@ -36,7 +36,9 @@ app.post('/users/:id/email', (req, res) => {
 });
 
 app.get('/users/:id/mail', (req, res) => {
-
+	homes.find({_id: id}).then((user) => {
+		res.json(user);
+	});
 });
 
 app.post('/users/:id/mail', (req, response) => {
