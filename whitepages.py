@@ -9,6 +9,7 @@ import dryscrape
 
 def search_whitepages(first_name, last_name, zip_code):
     url = 'http://www.whitepages.com/name/{}-{}/{}'.format(first_name, last_name, zip_code)
+    dryscrape.start_xvfb()
     session = dryscrape.Session()
 
     session.visit(url)
