@@ -15,9 +15,9 @@ ZILLOW_BASE_URL = 'https://www.zillow.com'
 ZILLOW_SEARCH_URL = 'https://www.zillow.com/search/GetResults.htm'
 ZILLOW_SEARCH_STANDARD_PARAMS = {
     "spt": "homes",
-    "status": "110001",
+    "status": "100000",
     "lt": "111101",
-    "ht": "100000",
+    "ht": "111111",
     "pr": ",",
     "mp": ",",
     "bd": "0%2C",
@@ -29,25 +29,24 @@ ZILLOW_SEARCH_STANDARD_PARAMS = {
     "hoa": "0%2C",
     "pho": "0",
     "pets": "0",
-     "parking": "0",
+    "parking": "0",
     "laundry": "0",
     "income-restricted": "0",
     "pnd": "0",
     "red": "0",
     "zso": "0",
     "days": "any",
-     "ds": "all",
-    "pmf": "1",
-    "pf":"1",
-    "sch":"100111",
-    "zoom":"9",
-    "rect":"-122204361,36678331,-121207352,37699034",
-    "sort":"globalrelevanceex",
-    "search":"maplist",
-    "rid":"3136",
-    "rt":"4",
-    "listright":"true",
-    "isMapSearch":"true"
+    "ds": "all",
+    "pmf": "1", "pf": "1",
+    "sch": "100111",
+    "zoom": "9",
+    "rect": "-122204361,36678331,-121207352,37699034", # for hackathon just hard-code santa clara county b/c country records.
+    "search": "list",
+    "rid": "3136",
+    "rt": "4",
+    "listright": "true",
+    "isMapSearch": "false",
+    "sort": "days"
 }
 
 ZILLOW_PAGE_PARAM_NAME = 'p'
