@@ -9,7 +9,7 @@ import os
 
 
 #constants
-MAX_CONNECTIONS = 10
+MAX_CONNECTIONS = 5
 
 ZILLOW_BASE_URL = 'https://www.zillow.com'
 ZILLOW_SEARCH_URL = 'https://www.zillow.com/search/GetResults.htm'
@@ -52,6 +52,7 @@ ZILLOW_SEARCH_STANDARD_PARAMS = {
 
 ZILLOW_PAGE_PARAM_NAME = 'p'
 SC_COUNTY_URL = 'http://scccroselfservice.org/web/searchPost/DOCSEARCH400S5'
+SC_COUNTY_BASE_URL =  'http://scccroselfservice.org'
 
 #globals
 main_request_queue = Queue()
@@ -121,37 +122,42 @@ def parse_detail_view(html):
 
     parcel_tag = parcel_num_text.parent.parent.find('td', {"class": "all-source"})
     parcel_number = parcel_tag.get_text()
-    owner = find_owner(parcel_number)
+    owners = find_owner(parcel_number)
 
-    if owner is None:
+    if owners is None or len(owners) == 0:
         return
 
-    comma_index = owner.find(',')
-    last_name = owner[:comma_index]
-    remaining = owner[comma_index + 2:]
-    space_index = remaining.find(' ')
-    if space_index < 0:
-        first_name = remaining
-    else:
-        first_name = remaining[:space_index]
+    global db
 
-    try:
-        value_int = int(value.replace(' ', '').replace('$', '').replace(',', ''))
-    except:
-        return
+    for owner in owners:
+        comma_index = owner.find(',')
+        last_name = owner[:comma_index]
+        remaining = owner[comma_index + 2:]
+        space_index = remaining.find(' ')
+        if space_index < 0:
+            first_name = remaining
+        else:
+            first_name = remaining[:space_index]
 
-    result = {
-        'first_name' : first_name,
-        'last_name' : last_name,
-        'apn' : int(parcel_number),
-        'address' : address_string,
-        'value' : value_int
+        try:
+            value_int = int(value.replace(' ', '').replace('$', '').replace(',', ''))
+        except:
+            return
 
-    }
+        result = {
+            'first_name' : first_name,
+            'last_name' : last_name,
+            'apn' : int(parcel_number),
+            'address' : address_string,
+            'value' : value_int
 
-    existing_entry = db.homes.find_one({"apn": result['apn']})
-    if existing_entry is None:
-        db.homes.insert_one(result)
+        }
+
+        print result
+
+        existing_entry = db.casas.find_one({"apn": result['apn'], 'first_name' : {'$ne' : result['first_name']}})
+        if existing_entry is None:
+            db.casas.insert_one(result)
 
 
 
@@ -177,11 +183,34 @@ def find_owner(apn):
                                                'field_selfservice_documentTypes_shown': '',
                                                'field_selfservice_documentTypes': ''})
 
-    soup = BeautifulSoup(r.content, 'html.parser')
-    owner_tag_list = soup.findAll('td', {'class': 'ui-search-result-column'})
-    if len(owner_tag_list) > 0:
-        owner_tag = owner_tag_list[4:5][0]
-        return owner_tag['title']
+    row_soup = BeautifulSoup(r.content, 'html.parser')
+    owner_row = row_soup.findAll('td', {'class': 'ui-search-result-column'})
+
+    if len(owner_row) > 0:
+        owner_tag = owner_row[4:5][0]
+        primary_listed_owner = owner_tag['title']
+    else:
+        return
+
+    link = SC_COUNTY_BASE_URL + owner_row[0].parent['data-href']
+
+    r2 = requests.get(link)
+    owner_soup = BeautifulSoup(r2.content, 'html.parser')
+    grantee = owner_soup.find(text='Grantee:')
+    grantee_table = grantee.parent.parent.parent
+    grantee_list = grantee_table.find('ul', {'class' : 'ui-unbulleted-list'})
+    if grantee_list is None:
+        people_list = [primary_listed_owner]
+    else:
+        bullets = grantee_list.findAll('li')
+
+        people_list = []
+
+        for b in bullets:
+            people_list.append(b.get_text())
+
+    return people_list
+
 
 
 def get_homes():
