@@ -36,7 +36,7 @@ app.get('/users/:id/mail', (req, res) => {
 
 });
 
-app.post('/users/:id/mail', (req, res) => {
+app.post('/users/:id/mail', (req, response) => {
 	homes.find({_id: id}).then((user) => {
 		const parsedAddress = parser.parseLocation(user.address);
 		Lob.letters.create({
@@ -60,7 +60,12 @@ app.post('/users/:id/mail', (req, res) => {
 		  file: `<html style="padding-top: 3in; margin: .5in;">${req.body.message}</html>`,
 		  color: false
 		}, function (err, res) {
-		  console.log(err, res);
+		  if (!err) {
+		  	const lobRes = { lob : { id: res.id, preview: res.url, expected: res.expected_delivery_date } };
+		  	homes.update({_id: id}, {$set: lobRes}, () => {
+		  		response.json(lobRes);
+		  	});
+		  }
 		});
 	});
 
